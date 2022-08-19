@@ -8,7 +8,11 @@ import About from './About';
 import Mission from './Mission';
 import Challenge from './Challenge';
 import CareSession from './CareSession';
-  
+import {Amplify} from 'aws-amplify'
+import {withAuthenticator} from '@aws-amplify/ui-react'
+import configure from './aws-exports'
+
+Amplify.configure(configure)
   
  function Router() {
     const [usenav, setusenav]=useState(1)

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 import Posting from "./Posting"
+import {withAuthenticator} from '@aws-amplify/ui-react'
 function Home(props){
 
     const [title, settitle]= useState('홈')
@@ -22,4 +23,4 @@ function Home(props){
       </div>
     )
 }
-export default Home
+export default withAuthenticator(Home)
