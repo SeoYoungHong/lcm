@@ -11,7 +11,7 @@ import CareSession from './CareSession';
 import {Amplify} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
 import configure from './aws-exports'
-
+//asd
 Amplify.configure(configure)
   
  function Router() {
