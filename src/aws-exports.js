@@ -37,7 +37,11 @@ const awsmobile = {
             "endpoint": "https://0eik5d9idk.execute-api.ap-northeast-2.amazonaws.com/staging",
             "region": "ap-northeast-2"
         }
-    ]
+    ],
+    "aws_appsync_graphqlEndpoint": "https://b2mhzf3f6rbuveuy2wdv6g65ma.appsync-api.ap-northeast-2.amazonaws.com/graphql",
+    "aws_appsync_region": "ap-northeast-2",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "da2-wnrsdvlh4zfkdfsdftznpmq4oe"
 };
 
 
