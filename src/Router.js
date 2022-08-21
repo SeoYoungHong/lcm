@@ -17,7 +17,7 @@ Amplify.configure(configure)
  function Router() {
     const [usenav, setusenav]=useState(1)
     return (
-      <div>
+      <div className='Router'>
       
         <header>
         <h1>
