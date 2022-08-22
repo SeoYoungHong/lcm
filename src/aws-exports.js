@@ -3,24 +3,11 @@
 
 const awsmobile = {
     "aws_project_region": "ap-northeast-2",
-    "aws_cognito_identity_pool_id": "ap-northeast-2:11fd72a6-90da-46a8-9964-2afe40ed17a6",
+    "aws_cognito_identity_pool_id": "ap-northeast-2:4db42da3-0f2c-4864-a1a2-f447e19343ac",
     "aws_cognito_region": "ap-northeast-2",
-    "aws_user_pools_id": "ap-northeast-2_9JSGPi1sd",
-    "aws_user_pools_web_client_id": "4c3ak0ki8bgsu9t536josid90q",
-    "oauth": {
-        "domain": "manjil35f71ec9-35f71ec9-staging.auth.ap-northeast-2.amazoncognito.com",
-        "scope": [
-            "phone",
-            "email",
-            "openid",
-            "profile",
-            "aws.cognito.signin.user.admin"
-        ],
-        "redirectSignIn": "https://manjil.klapoo.com/,http://localhost:3000/",
-        "redirectSignOut": "http://localhost:3000/,https://manjil.klapoo.com/",
-        "responseType": "code"
-    },
-    "federationTarget": "COGNITO_USER_POOLS",
+    "aws_user_pools_id": "ap-northeast-2_bVREoNIUp",
+    "aws_user_pools_web_client_id": "4ml1nr59sod4ojrvg0ekmspf4v",
+    "oauth": {},
     "aws_cognito_username_attributes": [],
     "aws_cognito_social_providers": [],
     "aws_cognito_signup_attributes": [
@@ -51,10 +38,10 @@ const awsmobile = {
             "region": "ap-northeast-2"
         }
     ],
-    "aws_appsync_graphqlEndpoint": "https://b2mhzf3f6rbuveuy2wdv6g65ma.appsync-api.ap-northeast-2.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://gqsxn2garrhz5jlcs6l26jof7q.appsync-api.ap-northeast-2.amazonaws.com/graphql",
     "aws_appsync_region": "ap-northeast-2",
-    "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-wnrsdvlh4zfkdfsdftznpmq4oe"
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_appsync_apiKey": "da2-sazakzoooncdlby4yinuwvz3pq"
 };
 
 

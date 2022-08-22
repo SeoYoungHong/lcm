@@ -6,12 +6,18 @@ import {createTodo, deleteTodo, listTodos} from './graphql';
 
 
 function Posting(props){
-    const name='홍서용'
+    const name=props.titles
+    const [user, setuser]=useState()
     const [value, setvalue] = useState({title: props.titles, description: ''})
     const [fetcheddata, setfetcheddata] = useState()
     useEffect(()=>{
         props.setusenav(0)
         fetchdata()
+        //유저 name에 대한 정보를 갖고옴
+        Auth.currentAuthenticatedUser()
+        .then(user=>setuser(user.username))
+        .catch((e)=>console.log(e))
+        
     },[])
 
     function setparam(){
@@ -28,10 +34,10 @@ function Posting(props){
         putdata()
         if(value.title && value.description){ const newTodo = await API.graphql({ 
             query: createTodo, 
-            variables: {input: {name: name, description: value}},
+            variables: {input: {name: name, user: user,description: value}},
         }
             )} 
-        setvalue({name: name, description: value})
+        setvalue({name: '', description: ''})
         fetchdata()
     }
 
@@ -41,6 +47,7 @@ function Posting(props){
             name:{
                 eq: name
             },
+            
             //description:{title:{eq:props.titles}}
             
         }
@@ -73,7 +80,7 @@ function Posting(props){
                 <div>
                     {fetcheddata &&fetcheddata.data.listTodos.items.map((arr, idx)=>(
                     <div key={idx}>
-                        <p>{arr.name} {arr.description} <button onClick={()=>deldata(arr.id)}/></p>
+                        <p>{arr.user} {arr.description} <button onClick={()=>deldata(arr.id)}/></p>
                     </div>
                 ))}
                 </div>
