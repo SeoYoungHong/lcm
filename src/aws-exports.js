@@ -7,7 +7,20 @@ const awsmobile = {
     "aws_cognito_region": "ap-northeast-2",
     "aws_user_pools_id": "ap-northeast-2_9JSGPi1sd",
     "aws_user_pools_web_client_id": "4c3ak0ki8bgsu9t536josid90q",
-    "oauth": {},
+    "oauth": {
+        "domain": "manjil35f71ec9-35f71ec9-staging.auth.ap-northeast-2.amazoncognito.com",
+        "scope": [
+            "phone",
+            "email",
+            "openid",
+            "profile",
+            "aws.cognito.signin.user.admin"
+        ],
+        "redirectSignIn": "https://manjil.klapoo.com/,http://localhost:3000/",
+        "redirectSignOut": "http://localhost:3000/,https://manjil.klapoo.com/",
+        "responseType": "code"
+    },
+    "federationTarget": "COGNITO_USER_POOLS",
     "aws_cognito_username_attributes": [],
     "aws_cognito_social_providers": [],
     "aws_cognito_signup_attributes": [

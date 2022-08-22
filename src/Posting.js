@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {API} from 'aws-amplify'
+import {API, Auth} from 'aws-amplify'
 import {withAuthenticator} from "@aws-amplify/ui-react"
 import {createTodo, deleteTodo, listTodos} from './graphql';
 
 
 
 function Posting(props){
-
-    const [value, setvalue] = useState({name: '', description: ''})
+    const name='홍서용'
+    const [value, setvalue] = useState({title: props.titles, description: ''})
     const [fetcheddata, setfetcheddata] = useState()
     useEffect(()=>{
         props.setusenav(0)
@@ -19,24 +19,32 @@ function Posting(props){
         props.settitle('홈')
     }
 
-    async function putdata(event){
+    async function putdata(){
         let inputValue = await document.getElementById('input').value;
-        if(inputValue){
-            setvalue({name: props.titles, description: inputValue})
-        }
-        else putdata()
-        createdata()
-        setvalue({name: '', description: ''})
-        fetchdata()
-        console.log(value)
+        setvalue({title: props.titles, description: inputValue})
     }
 
     async function createdata(){
-        if(value.name && value.description){ const newTodo = await API.graphql({ query: createTodo, variables: {input: value}})} 
+        putdata()
+        if(value.title && value.description){ const newTodo = await API.graphql({ 
+            query: createTodo, 
+            variables: {input: {name: name, description: value}},
+        }
+            )} 
+        setvalue({name: name, description: value})
+        fetchdata()
     }
 
     async function fetchdata(){
-        const data =await API.graphql({query: listTodos})
+        //혈당에서는 혈당에 대한 정보만 뜨게함
+        const filter={
+            name:{
+                eq: name
+            },
+            //description:{title:{eq:props.titles}}
+            
+        }
+        const data =await API.graphql({query: listTodos, variables:{filter:filter}})
             .then(data => setfetcheddata(data))
             .catch(err=>console.log(err))
         console.log("datafetch success")
@@ -59,10 +67,10 @@ function Posting(props){
                     name = 'input'
                     id = 'input'
                     placeholder={0}
+                    onChange={()=>putdata()}
                 />
-                <button onClick={putdata}>저장</button>
+                <button onClick={()=>createdata()}>저장</button>
                 <div>
-                    {console.log(fetcheddata)}
                     {fetcheddata &&fetcheddata.data.listTodos.items.map((arr, idx)=>(
                     <div key={idx}>
                         <p>{arr.name} {arr.description} <button onClick={()=>deldata(arr.id)}/></p>
