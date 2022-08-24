@@ -67,3 +67,102 @@ export const listFoods = /* GraphQL */ `
     }
   }
 `;
+export const getSports = /* GraphQL */ `
+  query GetSports($id: ID!) {
+    getSports(id: $id) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listSports = /* GraphQL */ `
+  query ListSports(
+    $filter: ModelSportsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSports(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        food
+        cal
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getBloodP = /* GraphQL */ `
+  query GetBloodP($id: ID!) {
+    getBloodP(id: $id) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listBloodPS = /* GraphQL */ `
+  query ListBloodPS(
+    $filter: ModelBloodPFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBloodPS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        bp1
+        bp2
+        bp3
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getBloodS = /* GraphQL */ `
+  query GetBloodS($id: ID!) {
+    getBloodS(id: $id) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listBloodS = /* GraphQL */ `
+  query ListBloodS(
+    $filter: ModelBloodSFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBloodS(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        gc
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;

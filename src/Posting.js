@@ -148,9 +148,6 @@ function Posting(props){
         )
     }
     function InPutfood(){
-        if(props.titles!=='식이') return(
-            <div>{Searchcomponet()}</div>
-        )
         if(props.titles==='식이') return(
             <div>
                 <input
@@ -160,14 +157,11 @@ function Posting(props){
                     onChange={()=>putfood()}
                 />
                 <button onClick={()=>{search(); document.getElementById("food").value=''}}>검색</button>
+                <div>{Searchcomponet()}</div>
             </div>
         )
     }
-    function InPutsports(){
-        if(props.titles!=='운동') return(
-            <div className="운동">{Searchcomponet()}</div>
-        )
-            
+    function InPutsports(){ 
         if(props.titles==='운동') return(
             <div className="운동">
                 <input
@@ -177,6 +171,7 @@ function Posting(props){
                     onChange={()=>putsports()}
                 />
                 <button onClick={()=>search()}>검색</button>
+                <div>{Searchcomponet()}</div>
                 
             </div>
         )
@@ -204,6 +199,17 @@ function Posting(props){
             )
         }
     }
+    function Fetcheddatacomponent(){
+        return(
+            <div>
+            {fetcheddata &&fetcheddata.data.listTodos.items.map((arr, idx)=>(
+            <div key={idx}>
+                <p>{arr.user} {arr.description} <button onClick={()=>deldata(arr.id)}/></p>
+            </div>
+        ))}
+        </div> 
+        )
+    }
 
 
     return(
@@ -214,13 +220,7 @@ function Posting(props){
                 <h5>{props.titles} 입력란</h5>
                 {InPutBloodPressure()}
                 {InPutGlucose()}
-                <div>
-                    {fetcheddata &&fetcheddata.data.listTodos.items.map((arr, idx)=>(
-                    <div key={idx}>
-                        <p>{arr.user} {arr.description} <button onClick={()=>deldata(arr.id)}/></p>
-                    </div>
-                ))}
-                </div>
+                {Fetcheddatacomponent()}
                 {InPutfood()}
                 {InPutsports()}
                 

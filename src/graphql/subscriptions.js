@@ -79,3 +79,120 @@ export const onDeleteFood = /* GraphQL */ `
     }
   }
 `;
+export const onCreateSports = /* GraphQL */ `
+  subscription OnCreateSports($owner: String) {
+    onCreateSports(owner: $owner) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateSports = /* GraphQL */ `
+  subscription OnUpdateSports($owner: String) {
+    onUpdateSports(owner: $owner) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteSports = /* GraphQL */ `
+  subscription OnDeleteSports($owner: String) {
+    onDeleteSports(owner: $owner) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateBloodP = /* GraphQL */ `
+  subscription OnCreateBloodP($owner: String) {
+    onCreateBloodP(owner: $owner) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateBloodP = /* GraphQL */ `
+  subscription OnUpdateBloodP($owner: String) {
+    onUpdateBloodP(owner: $owner) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteBloodP = /* GraphQL */ `
+  subscription OnDeleteBloodP($owner: String) {
+    onDeleteBloodP(owner: $owner) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateBloodS = /* GraphQL */ `
+  subscription OnCreateBloodS($owner: String) {
+    onCreateBloodS(owner: $owner) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateBloodS = /* GraphQL */ `
+  subscription OnUpdateBloodS($owner: String) {
+    onUpdateBloodS(owner: $owner) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteBloodS = /* GraphQL */ `
+  subscription OnDeleteBloodS($owner: String) {
+    onDeleteBloodS(owner: $owner) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

@@ -97,3 +97,147 @@ export const deleteFood = /* GraphQL */ `
     }
   }
 `;
+export const createSports = /* GraphQL */ `
+  mutation CreateSports(
+    $input: CreateSportsInput!
+    $condition: ModelSportsConditionInput
+  ) {
+    createSports(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateSports = /* GraphQL */ `
+  mutation UpdateSports(
+    $input: UpdateSportsInput!
+    $condition: ModelSportsConditionInput
+  ) {
+    updateSports(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteSports = /* GraphQL */ `
+  mutation DeleteSports(
+    $input: DeleteSportsInput!
+    $condition: ModelSportsConditionInput
+  ) {
+    deleteSports(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createBloodP = /* GraphQL */ `
+  mutation CreateBloodP(
+    $input: CreateBloodPInput!
+    $condition: ModelBloodPConditionInput
+  ) {
+    createBloodP(input: $input, condition: $condition) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateBloodP = /* GraphQL */ `
+  mutation UpdateBloodP(
+    $input: UpdateBloodPInput!
+    $condition: ModelBloodPConditionInput
+  ) {
+    updateBloodP(input: $input, condition: $condition) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteBloodP = /* GraphQL */ `
+  mutation DeleteBloodP(
+    $input: DeleteBloodPInput!
+    $condition: ModelBloodPConditionInput
+  ) {
+    deleteBloodP(input: $input, condition: $condition) {
+      id
+      name
+      bp1
+      bp2
+      bp3
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createBloodS = /* GraphQL */ `
+  mutation CreateBloodS(
+    $input: CreateBloodSInput!
+    $condition: ModelBloodSConditionInput
+  ) {
+    createBloodS(input: $input, condition: $condition) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateBloodS = /* GraphQL */ `
+  mutation UpdateBloodS(
+    $input: UpdateBloodSInput!
+    $condition: ModelBloodSConditionInput
+  ) {
+    updateBloodS(input: $input, condition: $condition) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteBloodS = /* GraphQL */ `
+  mutation DeleteBloodS(
+    $input: DeleteBloodSInput!
+    $condition: ModelBloodSConditionInput
+  ) {
+    deleteBloodS(input: $input, condition: $condition) {
+      id
+      name
+      gc
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
