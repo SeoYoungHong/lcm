@@ -6,9 +6,11 @@ export const getTodo = /* GraphQL */ `
     getTodo(id: $id) {
       id
       name
+      user
       description
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -22,9 +24,44 @@ export const listTodos = /* GraphQL */ `
       items {
         id
         name
+        user
         description
         createdAt
         updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getFood = /* GraphQL */ `
+  query GetFood($id: ID!) {
+    getFood(id: $id) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listFoods = /* GraphQL */ `
+  query ListFoods(
+    $filter: ModelFoodFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFoods(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        food
+        cal
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }

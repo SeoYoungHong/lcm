@@ -9,9 +9,11 @@ export const createTodo = /* GraphQL */ `
     createTodo(input: $input, condition: $condition) {
       id
       name
+      user
       description
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -23,9 +25,11 @@ export const updateTodo = /* GraphQL */ `
     updateTodo(input: $input, condition: $condition) {
       id
       name
+      user
       description
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -37,9 +41,59 @@ export const deleteTodo = /* GraphQL */ `
     deleteTodo(input: $input, condition: $condition) {
       id
       name
+      user
       description
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const createFood = /* GraphQL */ `
+  mutation CreateFood(
+    $input: CreateFoodInput!
+    $condition: ModelFoodConditionInput
+  ) {
+    createFood(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateFood = /* GraphQL */ `
+  mutation UpdateFood(
+    $input: UpdateFoodInput!
+    $condition: ModelFoodConditionInput
+  ) {
+    updateFood(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteFood = /* GraphQL */ `
+  mutation DeleteFood(
+    $input: DeleteFoodInput!
+    $condition: ModelFoodConditionInput
+  ) {
+    deleteFood(input: $input, condition: $condition) {
+      id
+      name
+      food
+      cal
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

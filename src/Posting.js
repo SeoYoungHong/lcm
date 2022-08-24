@@ -29,7 +29,7 @@ function Posting(props){
     function foodrender(searchtarget){
         const foodrender=[]
         food_keys.map((key, index)=>{   
-            if(food_data[key].name.indexOf(searchtarget)!=-1) foodrender.push(food_data[key].name)
+            if(food_data[key].name.indexOf(searchtarget)!=-1) foodrender.push(food_data[key])
         }) 
         setfoodrenderdata(foodrender)
     }
@@ -52,21 +52,27 @@ function Posting(props){
     }
     async function putfood(){
         let food = await document.getElementById('food').value;
-        
         setsearchvalue(food)
+    }
+    async function putfoodtovalue(data){
+        createdata(data)
     }
     async function putsports(){
         let sports = await document.getElementById('sports').value;
-        
         setsearchvalue(sports)
     }
 
-    async function createdata(){
+    async function createdata(data){
+        console.log('createdata', value)
         if(value){ const newTodo = await API.graphql({ 
             query: createTodo, 
             variables: {input: {name: name, user: user,description: value}},
-        }
-            )} 
+        })}
+        else if(data){ const newTodo = await API.graphql({ 
+            query: createTodo, 
+            variables: {input: {name: name, user: user,description: data}},
+        })}
+     
         setvalue(null)
         fetchdata()
     }
@@ -96,6 +102,10 @@ function Posting(props){
         fetchdata()
     }
 
+
+
+    //여기 아래부터는 프론트에 해당하는 함수들임 아래에 스타일을 적용    
+    //front component
     function InPutBloodPressure(){
         if(props.titles!=='혈압') return null
         return(
@@ -172,7 +182,7 @@ function Posting(props){
         )
     }
     function Searchcomponet(){
-        if(name=='운동'){
+        if(name=='운동'&&searchstate===true){
             return(
                 
                 <div>
@@ -184,9 +194,9 @@ function Posting(props){
             return(
                 <div>
                     <p>{props.titles}검색결과</p>
-                    <div>{foodrenderdata.map((name, index)=>(
+                    <div>{foodrenderdata.map((data, index)=>(
                         <div key={index}>   
-                            <p>{name}</p>
+                            <button onClick={()=>putfoodtovalue(data)}>{data.name}</button>
                         </div>
                     )
                     )}</div>
@@ -204,9 +214,6 @@ function Posting(props){
                 <h5>{props.titles} 입력란</h5>
                 {InPutBloodPressure()}
                 {InPutGlucose()}
-                {InPutfood()}
-                {InPutsports()}
-                
                 <div>
                     {fetcheddata &&fetcheddata.data.listTodos.items.map((arr, idx)=>(
                     <div key={idx}>
@@ -214,6 +221,10 @@ function Posting(props){
                     </div>
                 ))}
                 </div>
+                {InPutfood()}
+                {InPutsports()}
+                
+                
             </div>
             
         </div>
