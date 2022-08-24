@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {API, Auth} from 'aws-amplify'
 import {withAuthenticator} from "@aws-amplify/ui-react"
 import {createTodo, deleteTodo, listTodos} from './graphql';
-
+import food_data from './food_data.json'
 
 
 function Posting(props){
@@ -13,8 +13,10 @@ function Posting(props){
     const [fetcheddata, setfetcheddata] = useState()
     const [searchvalue, setsearchvalue]= useState()
     const [searchstate, setsearchstate] = useState(false)
+    const [foodrenderdata, setfoodrenderdata] = useState()
+    const food_keys = Object.keys(food_data);
     useEffect(()=>{
-        
+        foodrender()
         props.setusenav(0)
         fetchdata()
         //유저 name에 대한 정보를 갖고옴
@@ -24,6 +26,13 @@ function Posting(props){
         
     },[])
     
+    function foodrender(searchtarget){
+        const foodrender=[]
+        food_keys.map((key, index)=>{   
+            if(food_data[key].name.indexOf(searchtarget)!=-1) foodrender.push(food_data[key].name)
+        }) 
+        setfoodrenderdata(foodrender)
+    }
 
 
     function setparam(){
@@ -43,10 +52,12 @@ function Posting(props){
     }
     async function putfood(){
         let food = await document.getElementById('food').value;
+        
         setsearchvalue(food)
     }
     async function putsports(){
         let sports = await document.getElementById('sports').value;
+        
         setsearchvalue(sports)
     }
 
@@ -61,6 +72,9 @@ function Posting(props){
     }
     async function search(){
         setsearchstate(true)
+        foodrender(searchvalue)
+        console.log('search to true')
+        
     }
 
     async function fetchdata(){
@@ -124,8 +138,10 @@ function Posting(props){
         )
     }
     function InPutfood(){
-        if(props.titles!=='식이'||searchstate===true) return null
-        return(
+        if(props.titles!=='식이') return(
+            <div>{Searchcomponet()}</div>
+        )
+        if(props.titles==='식이') return(
             <div>
                 <input
                     name = 'food'
@@ -133,17 +149,17 @@ function Posting(props){
                     placeholder={'음식을 검색하세요'}
                     onChange={()=>putfood()}
                 />
-                <button onClick={()=>search()}>검색</button>
+                <button onClick={()=>{search(); document.getElementById("food").value=''}}>검색</button>
             </div>
         )
     }
     function InPutsports(){
-        if(props.titles!=='운동'||searchstate===true) return(
-            <div>{Searchcomponet()}</div>
+        if(props.titles!=='운동') return(
+            <div className="운동">{Searchcomponet()}</div>
         )
             
-        return(
-            <div>
+        if(props.titles==='운동') return(
+            <div className="운동">
                 <input
                     name = 'sports'
                     id = 'sports'
@@ -156,9 +172,27 @@ function Posting(props){
         )
     }
     function Searchcomponet(){
-        return(
-            <div>{props.titles}검색결과</div>
-        )
+        if(name=='운동'){
+            return(
+                
+                <div>
+                    <p>{props.titles}검색결과</p>
+                </div>
+
+            )}
+        else if(name=='식이'&&searchstate===true){
+            return(
+                <div>
+                    <p>{props.titles}검색결과</p>
+                    <div>{foodrenderdata.map((name, index)=>(
+                        <div key={index}>   
+                            <p>{name}</p>
+                        </div>
+                    )
+                    )}</div>
+                </div>
+            )
+        }
     }
 
 
@@ -166,7 +200,7 @@ function Posting(props){
         <div>
             <header>posting: {props.titles}</header>
             <button onClick={()=>setparam()}>뒤로가기</button>
-            <div>
+            <div className="posting main">
                 <h5>{props.titles} 입력란</h5>
                 {InPutBloodPressure()}
                 {InPutGlucose()}
