@@ -166,3 +166,40 @@ export const listBloodS = /* GraphQL */ `
     }
   }
 `;
+export const getChallenge = /* GraphQL */ `
+  query GetChallenge($id: ID!) {
+    getChallenge(id: $id) {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listChallenges = /* GraphQL */ `
+  query ListChallenges(
+    $filter: ModelChallengeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChallenges(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        category
+        usercount
+        date
+        content
+        reward_info
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

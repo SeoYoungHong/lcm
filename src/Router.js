@@ -26,7 +26,7 @@ Amplify.configure(configure)
                 <Route exact path="/" element={(<Home setusenav={setusenav}/>)} />
                 <Route path="/about" element={About} /> 
                 <Route path="/mission" element={(<Mission/>)} /> 
-                <Route path="/challenge" element={(<Challenge/>)} /> 
+                <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
                 <Route path="/caresession" element={(<CareSession/>)} /> 
             </Routes> 
           <Navi usenav={usenav}/>

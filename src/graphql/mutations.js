@@ -241,3 +241,57 @@ export const deleteBloodS = /* GraphQL */ `
     }
   }
 `;
+export const createChallenge = /* GraphQL */ `
+  mutation CreateChallenge(
+    $input: CreateChallengeInput!
+    $condition: ModelChallengeConditionInput
+  ) {
+    createChallenge(input: $input, condition: $condition) {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateChallenge = /* GraphQL */ `
+  mutation UpdateChallenge(
+    $input: UpdateChallengeInput!
+    $condition: ModelChallengeConditionInput
+  ) {
+    updateChallenge(input: $input, condition: $condition) {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteChallenge = /* GraphQL */ `
+  mutation DeleteChallenge(
+    $input: DeleteChallengeInput!
+    $condition: ModelChallengeConditionInput
+  ) {
+    deleteChallenge(input: $input, condition: $condition) {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -196,3 +196,48 @@ export const onDeleteBloodS = /* GraphQL */ `
     }
   }
 `;
+export const onCreateChallenge = /* GraphQL */ `
+  subscription OnCreateChallenge {
+    onCreateChallenge {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateChallenge = /* GraphQL */ `
+  subscription OnUpdateChallenge {
+    onUpdateChallenge {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteChallenge = /* GraphQL */ `
+  subscription OnDeleteChallenge {
+    onDeleteChallenge {
+      id
+      title
+      category
+      usercount
+      date
+      content
+      reward_info
+      createdAt
+      updatedAt
+    }
+  }
+`;
