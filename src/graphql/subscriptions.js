@@ -197,8 +197,8 @@ export const onDeleteBloodS = /* GraphQL */ `
   }
 `;
 export const onCreateChallenge = /* GraphQL */ `
-  subscription OnCreateChallenge {
-    onCreateChallenge {
+  subscription OnCreateChallenge($owner: String) {
+    onCreateChallenge(owner: $owner) {
       id
       title
       category
@@ -208,12 +208,13 @@ export const onCreateChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateChallenge = /* GraphQL */ `
-  subscription OnUpdateChallenge {
-    onUpdateChallenge {
+  subscription OnUpdateChallenge($owner: String) {
+    onUpdateChallenge(owner: $owner) {
       id
       title
       category
@@ -223,12 +224,13 @@ export const onUpdateChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteChallenge = /* GraphQL */ `
-  subscription OnDeleteChallenge {
-    onDeleteChallenge {
+  subscription OnDeleteChallenge($owner: String) {
+    onDeleteChallenge(owner: $owner) {
       id
       title
       category
@@ -238,6 +240,7 @@ export const onDeleteChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;

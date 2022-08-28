@@ -178,6 +178,7 @@ export const getChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -198,6 +199,7 @@ export const listChallenges = /* GraphQL */ `
         reward_info
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

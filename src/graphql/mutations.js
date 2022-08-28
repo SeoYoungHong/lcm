@@ -256,6 +256,7 @@ export const createChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -274,6 +275,7 @@ export const updateChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -292,6 +294,7 @@ export const deleteChallenge = /* GraphQL */ `
       reward_info
       createdAt
       updatedAt
+      owner
     }
   }
 `;
