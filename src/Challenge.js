@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {API} from 'aws-amplify'
+import {API, Auth} from 'aws-amplify'
 import { createChallenge, deleteChallenge, listChallenges} from './graphql'
 import ChallengeDetail from "./ChallengeDetail";
+import { ComponentPropsToStylePropsMap } from "@aws-amplify/ui-react";
 
-function Challenge(){
+function Challenge(props){
 
     const [category, setcategory]= useState('식사')
     const [categorystate, setcategorystate] = useState(true)
     const [search, setsearch]= useState('')
     const [fetcheddata, setfetcheddata]=useState()
     const [detailstate, setdetailstate] = useState('challenge')
+    const [group, setgroup] = useState()
 
     useEffect(()=>{
         fetchdata()
+        Auth.currentSession()
+        .then(user=>setgroup(user))
+        .catch((e)=>console.log(e))
     },[])
 
     useEffect(()=>{
@@ -31,21 +36,23 @@ function Challenge(){
         console.log("datafetch success")
     }
     async function deldata(id){
-        console.log('deldata')
         await API.graphql({query: deleteChallenge, variables: {input: {id:id}}})
         fetchdata()
+        console.log('deldata')
     }
-    async function createdata(){
+    async function createdata(input){
+        let data ={title: 'test1', category: '식사', usercount: 0, date:'기간', content: '챌린지 참여이유', reward_info: '리워드정보'} 
+        if(input){data=input}
         console.log('createdata')
         const newTodo = await API.graphql({ 
             query: createChallenge, 
-            variables: {input: {title: 'test1', category: '식사', usercount: 0, date:'기간', content: '챌린지 참여이유', reward_info: '리워드정보'}},
+            variables: {input: data},
         })
         fetchdata()
     }
 
     function InPut(){
-        return(
+        if(detailstate===false) return(
             <div>
                 <input
                     name = 'search'
@@ -60,7 +67,7 @@ function Challenge(){
 
     function Category(){
         const categorys=['식사', '운동', '생활', 'my']
-        if(categorystate==false) return null
+        if(categorystate==false) return 
         return(
             <div>
                 {categorys.map((ct, index)=>(
@@ -77,15 +84,34 @@ function Challenge(){
             {fetcheddata &&fetcheddata.data.listChallenges.items.map((arr, idx)=>(
                 <div key={idx}>
 
-                    {detailstate===arr.id ?<ChallengeDetail content={arr} setstate={setdetailstate} setcategorystate={setcategorystate}/> : null}
-                    {detailstate==='challenge' ? <button onClick={()=>{setdetailstate(arr.id); setcategorystate(false)}}>
-                        <p>이미지</p>
-                        <p>user count: {arr.usercount}</p>
-                        <p>title: {arr.title}</p>
-                    </button> :null}
+                    {detailstate===arr.id ?
+                        <div>
+                            <ChallengeDetail content={arr} id={arr.id} createdata={createdata}/> 
+                            <button onClick={()=>{setdetailstate('challenge'); setcategorystate(true); props.setusenav(1)}}>뒤로가기</button>
+                        </div>
+                        : null}
+                    {detailstate==='challenge' ? 
+                        <div>
+                            <button onClick={()=>{setdetailstate(arr.id); setcategorystate(false); props.setusenav(0)}}>
+                                <p>{arr.id}</p>
+                                <p>이미지</p>
+                                <p>user count: {arr.usercount}</p>
+                                <p>title: {arr.title}</p>
+                            </button>
+                            <button onClick={()=>deldata(arr.id)}>
+                                삭제
+                            </button>
+                        </div> :null}
                 </div>))}
             </div> 
         )
+    }
+    function CreateData(){
+        if(group) {
+            const usergroup = group.idToken.payload['cognito:groups']
+            if(usergroup.includes('test')) return(<button onClick={()=>createdata()}>테스트 생성</button>)
+        }
+        return null
     }
 
     
@@ -93,7 +119,7 @@ function Challenge(){
     return(
         <div>
             <header>Challenge</header>
-            <button onClick={()=>createdata()}>테스트 생성</button>
+            {CreateData()}
             {InPut()}
             {Category()}
             {Fetchdata()}
