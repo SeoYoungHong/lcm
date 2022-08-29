@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import {Auth, auth0SignInButton} from "aws-amplify"
+import './test.css'
 
 
 function Navi(props){
@@ -17,20 +18,20 @@ function Navi(props){
     }
 
     return(
-        <div>
-            <button>
+        <div class='Navi'>
+            <button class='button'>
                 <Link to="/">홈</Link>
             </button>
-            <button>
+            <button class='button'>
                 <Link to='/about'>about</Link>
             </button>
-            <button>
+            <button class='button'>
                 <Link to='/mission'>mission</Link>
             </button>
-            <button>
+            <button class='button'>
                 <Link to='/challenge'>challenge</Link>
             </button>
-            <button>
+            <button class='button'>
                 <Link to='/caresession'>caresession</Link>
             </button>
             <button onClick={()=>signOut()}>로그아웃</button>

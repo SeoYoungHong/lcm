@@ -13,6 +13,8 @@ import {withAuthenticator} from '@aws-amplify/ui-react'
 import configure from './aws-exports'
 import HomeFoodDetail from './HomeFoodDetail';
 import HomeFood from './HomeFood';
+import './test.css'
+
 //asd
 Amplify.configure(configure)
   
@@ -33,7 +35,7 @@ Amplify.configure(configure)
                 <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
                 <Route path="/caresession" element={(<CareSession/>)} /> 
             </Routes> 
-          <Navi usenav={usenav}/>
+          <Navi usenav={usenav} class='Navi'/>
         </BrowserRouter>
         </h1>
         </header>
