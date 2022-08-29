@@ -11,6 +11,8 @@ import CareSession from './CareSession';
 import {Amplify} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
 import configure from './aws-exports'
+import HomeFoodDetail from './HomeFoodDetail';
+import HomeFood from './HomeFood';
 //asd
 Amplify.configure(configure)
   
@@ -27,6 +29,8 @@ Amplify.configure(configure)
                 <Route path="/about" element={About} /> 
                 <Route path="/mission" element={(<Mission/>)} /> 
                 <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
+                <Route path="/food/:id" element={(<HomeFoodDetail setusenav={setusenav}/>)} />
+                <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
                 <Route path="/caresession" element={(<CareSession/>)} /> 
             </Routes> 
           <Navi usenav={usenav}/>

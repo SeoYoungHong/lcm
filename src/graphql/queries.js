@@ -40,6 +40,8 @@ export const getFood = /* GraphQL */ `
       id
       name
       food
+      volum
+      scale
       cal
       createdAt
       updatedAt
@@ -58,6 +60,8 @@ export const listFoods = /* GraphQL */ `
         id
         name
         food
+        volum
+        scale
         cal
         createdAt
         updatedAt

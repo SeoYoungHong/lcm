@@ -58,6 +58,8 @@ export const createFood = /* GraphQL */ `
       id
       name
       food
+      volum
+      scale
       cal
       createdAt
       updatedAt
@@ -74,6 +76,8 @@ export const updateFood = /* GraphQL */ `
       id
       name
       food
+      volum
+      scale
       cal
       createdAt
       updatedAt
@@ -90,6 +94,8 @@ export const deleteFood = /* GraphQL */ `
       id
       name
       food
+      volum
+      scale
       cal
       createdAt
       updatedAt

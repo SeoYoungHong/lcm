@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {createFood, deleteFood, listFoods } from "./graphql";
 import {Auth, API} from 'aws-amplify'
 import food_data from './food_data.json'
+import { Link } from "react-router-dom";
 
 function HomeFood(props){
 
@@ -10,6 +11,7 @@ function HomeFood(props){
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
     const [fetchedfood, setfetchedfood] = useState([])
+    const [totalcal, settotalcal] = useState(0)
     const food_keys = Object.keys(food_data);
 
 
@@ -20,12 +22,19 @@ function HomeFood(props){
         fetchdata()
         fetchfood()
     },[])
+    useEffect(()=>{
+        getcal()
+    },[fetcheddata])
 
     //음식데이터 베이스를 다루는 코드
     function fetchfood(searchtarget){
         const foodrender=[]
         food_keys.map((key, index)=>{   
-            if(food_data[key].name.indexOf(searchtarget)!=-1) foodrender.push(food_data[key])
+            if(food_data[key].name.indexOf(searchtarget)!=-1) {
+                const data=food_data[key]
+                data['id']=key
+                foodrender.push(data)
+            }
         }) 
         setfetchedfood(foodrender)
     }
@@ -57,7 +66,13 @@ function HomeFood(props){
         await API.graphql({query: deleteFood, variables: {input: {id:id}}})
         fetchdata()
     }
-    
+    function getcal(){
+        fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>{
+            console.log('fetchedcal',arr.cal)
+            settotalcal(totalcal+arr.cal)
+        })
+        console.log('totalcal: ', totalcal)
+    }
    
 
 
@@ -76,25 +91,32 @@ function HomeFood(props){
             </div>
         )
     }
+
+    
     //graphql데이터를 fetch해옴
     function Fetchdata(){
+        
         return(
             <div>
+            <p>당일섭취</p>
+            <p>총칼로리 {totalcal}</p>
             {fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>(
                 <div key={idx}>
+                    {console.log(arr)}
                     <p>{arr.name}{arr.food} <button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
             </div> 
         )
     }
-    //db에서 검색결과를 가져옴, 이름에 버튼을 이름을 누르면 먹은 것으로 되게함.
+    //route를 활용하여 post detail페이지로 이동
     function Search(){
         return(
             <div>
                 <p>{props.titles}검색결과</p>
                 <div>{fetchedfood.map((data, index)=>(
                     <div key={index}>   
-                        <button onClick={()=>createdata(data)}>{data.name}</button>
+                        {/*<button onClick={()=>createdata(data)}>{data.name}</button>*/}
+                        <button><Link to={'/food/'+data.id}>{data.name}</Link></button>
                     </div>
                 )
                 )}</div>
