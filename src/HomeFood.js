@@ -68,7 +68,6 @@ function HomeFood(props){
         fetchdata()
     }
     function getcal(){
-        console.log(totalcal)
         let cal=0
         fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>{
             cal=cal+arr.cal   
@@ -107,7 +106,7 @@ function HomeFood(props){
                 <div key={idx}>
                     <p>{arr.name}:  {arr.cal} <button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
-            </div> 
+            </div>
         )
     }
     //route를 활용하여 post detail페이지로 이동
