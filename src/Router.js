@@ -13,7 +13,6 @@ import {withAuthenticator} from '@aws-amplify/ui-react'
 import configure from './aws-exports'
 import HomeFoodDetail from './HomeFoodDetail';
 import HomeFood from './HomeFood';
-import './test.css'
 
 //asd
 Amplify.configure(configure)
