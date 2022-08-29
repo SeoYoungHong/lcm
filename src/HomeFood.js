@@ -101,10 +101,10 @@ function HomeFood(props){
         return(
             <div>
             <p>당일섭취</p>
-            <p>총칼로리 {totalcal}</p>
+            <p>총칼로리 {totalcal} kcal</p>
             {fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.name}:  {arr.cal} <button onClick={()=>deldata(arr.id)}/></p>
+                    <p>{arr.name}:  {arr.cal} kcal <button onClick={()=>deldata(arr.id)}>삭제</button></p>
                 </div>))}
             </div>
         )
