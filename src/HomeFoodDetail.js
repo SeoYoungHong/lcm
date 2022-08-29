@@ -27,14 +27,12 @@ function HomeFoodDetail(props){
         const link=window.location.href;
         const list_link=link.split('/')
         setfood(food_data[list_link[4]])
-        console.log(food)
     }
     
     return(
         <div>
             {food ? (
                 <div>
-                    {console.log(food)}
                     <p>{food.name}</p>
                     <p>{food.detail.volum}{food.detail.a}</p>
                     <p>{'열량: '+food.detail.energe+'kcal'}</p>

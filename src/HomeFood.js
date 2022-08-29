@@ -60,6 +60,7 @@ function HomeFood(props){
             .then(data => setfetcheddata(data))
             .catch(err=>console.log(err))
         console.log("datafetch success")
+        getcal()
     }
     async function deldata(id){
         console.log('deldata')
@@ -67,12 +68,14 @@ function HomeFood(props){
         fetchdata()
     }
     function getcal(){
+        console.log(totalcal)
+        let cal=0
         fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>{
-            console.log('fetchedcal',arr.cal)
-            settotalcal(totalcal+arr.cal)
+            cal=cal+arr.cal   
         })
-        console.log('totalcal: ', totalcal)
+        settotalcal(cal)
     }
+
    
 
 
@@ -102,8 +105,7 @@ function HomeFood(props){
             <p>총칼로리 {totalcal}</p>
             {fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>(
                 <div key={idx}>
-                    {console.log(arr)}
-                    <p>{arr.name}{arr.food} <button onClick={()=>deldata(arr.id)}/></p>
+                    <p>{arr.name}:  {arr.cal} <button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
             </div> 
         )
