@@ -21,6 +21,7 @@
   text-transform: capitalize;
   text-decoration: none;
   border: 1vw solid red;
+  background-color: white;
 }
 .Home .button2 {
   margin-left: 5vw;
@@ -41,6 +42,7 @@
   text-transform: capitalize;
   text-decoration: none;
   border: 1vw solid rgb(252, 41, 221);
+  background-color: white;
 }
 .Home .button3 {
   margin-left: 5vw;
@@ -61,6 +63,7 @@
   text-transform: capitalize;
   text-decoration: none;
   border: 1vw solid rgb(122, 173, 21);
+  background-color: white;
 }
 .Home .button4 {
   margin-left: 5vw;
@@ -81,6 +84,7 @@
   text-transform: capitalize;
   text-decoration: none;
   border: 1vw solid #2f1cd3;
+  background-color: white;
 }
 
 /*# sourceMappingURL=Home.css.map */
