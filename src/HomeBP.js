@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { createBloodP, deleteBloodP, listBloodPS } from "./graphql";
 import {Auth, API} from 'aws-amplify'
-import './css/HomeBP.css'
+//import './css/HomeBP.css'
 import homeimg from './icons/homeimg.png'
 import blankimg from './icons/blankimg.png'
 import getdate from './functions/date.js'
+import { NameContext } from "./context/Store";
 
 function HomeBP(props){
-
+    const {username, changeUserName} = useContext(NameContext);
     const initialinput = {bp1:'', bp2:'', bp3:''}
     const [user, setuser] = useState(null)
     const [input, setinput] = useState(initialinput)
@@ -80,7 +81,10 @@ function HomeBP(props){
                     onChange={()=>put()}
                 /></p>
                 <button onClick={()=>createdata()}>저장</button>
-                
+                <p>
+                    {username}
+                </p>
+                <button onClick={changeUserName}>유저이름바꾸기</button>
             </div>
         )
     }

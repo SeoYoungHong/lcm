@@ -6,6 +6,8 @@ import HomeFood from "./HomeFood"
 import {withAuthenticator} from '@aws-amplify/ui-react'
 import {Link} from 'react-router-dom'
 import './css/Home.css'
+import Homerecord from "./Homerecord"
+import Homereport from "./Homereport"
 
 function Home(props){
 
@@ -35,6 +37,10 @@ function Home(props){
                   <Link to="/food" style={{textDecoration: 'none'}}><button class='button3' onClick={()=>{props.setusenav(0)}}>식이</button></Link>
                   <button class='button4' onClick={()=>changepage('sports')}>운동</button>
                 </p>
+                <p>
+                  <button class='button4' onClick={()=>changepage('record')}>기록확인</button>
+                  <button class='button4' onClick={()=>changepage('report')}>보고서</button>
+                </p>
               </h1>
             </div>): 
             <div>
@@ -42,6 +48,8 @@ function Home(props){
               <HomeBP titles={title}/>
               <HomeBS titles={title}/>
               <HomeFood titles={title}/>
+              <Homerecord titles={title}/>
+              <Homereport titles={title}/>
             </div>  
               }
 
