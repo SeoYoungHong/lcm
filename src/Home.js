@@ -16,20 +16,24 @@ function Home(props){
     function changetitle(){
       if(props.title) settitle(props.title)
     }
+
+    async function changepage(event){
+      settitle(event)
+      const navstate= await props.setusenav(0)
+    }
+
     return (
       <div class='Home'>
-
-        
           {title ==='홈'? (
             <div>
               <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.
                 <p>
-                  <button class='button' onClick={()=>{settitle('BP');props.setusenav(0)}}>혈압</button>
-                  <button class='button' onClick={()=>{settitle('BS');props.setusenav(0)}}>혈당</button>
+                  <button class='button' onClick={()=>changepage('BP')}>혈압</button>
+                  <button class='button' onClick={()=>changepage('BS')}>혈당</button>
                 </p>
                 <p>
                   <Link to="/food" style={{textDecoration: 'none'}}><button class='button' onClick={()=>{props.setusenav(0)}}>식이</button></Link>
-                  <button class='button' onClick={()=>{settitle('sports');props.setusenav(0)}}>운동</button>
+                  <button class='button' onClick={()=>changepage('sports')}>운동</button>
                 </p>
               </h1>
             </div>): 
