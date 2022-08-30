@@ -4,6 +4,7 @@ import {Auth, API} from 'aws-amplify'
 import './css/HomeBS.css'
 import homeimg from './icons/homeimg.png'
 import blankimg from './icons/blankimg.png'
+import getdate from "./functions/date";
 
 function HomeBP(props){
 
@@ -11,6 +12,8 @@ function HomeBP(props){
     const [user, setuser] = useState(null)
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
+    let date = getdate().split('T')[0]
+    let time = getdate().split('T')[1]
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -22,7 +25,7 @@ function HomeBP(props){
     async function createdata(){
         if(input){ const newTodo = await API.graphql({ 
             query: createBloodS, 
-            variables: {input: {...input, name: user}},
+            variables: {input: {...input, name: user, date:date, time:time}},
         })}
         console.log('createdata')
         setinput(null)
@@ -67,7 +70,7 @@ function HomeBP(props){
             <div>
             {fetcheddata &&fetcheddata.data.listBloodS.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.gc} <button onClick={()=>deldata(arr.id)}/></p>
+                    <p>{arr.gc} {arr.time}<button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
             </div> 
         )

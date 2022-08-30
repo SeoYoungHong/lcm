@@ -49,6 +49,8 @@ export const onCreateFood = /* GraphQL */ `
       volum
       scale
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -64,6 +66,8 @@ export const onUpdateFood = /* GraphQL */ `
       volum
       scale
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -79,6 +83,8 @@ export const onDeleteFood = /* GraphQL */ `
       volum
       scale
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -92,6 +98,8 @@ export const onCreateSports = /* GraphQL */ `
       name
       food
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -105,6 +113,8 @@ export const onUpdateSports = /* GraphQL */ `
       name
       food
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -118,6 +128,8 @@ export const onDeleteSports = /* GraphQL */ `
       name
       food
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -178,6 +190,8 @@ export const onCreateBloodS = /* GraphQL */ `
       id
       name
       gc
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -190,6 +204,8 @@ export const onUpdateBloodS = /* GraphQL */ `
       id
       name
       gc
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -202,6 +218,8 @@ export const onDeleteBloodS = /* GraphQL */ `
       id
       name
       gc
+      date
+      time
       createdAt
       updatedAt
       owner

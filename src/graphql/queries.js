@@ -43,6 +43,8 @@ export const getFood = /* GraphQL */ `
       volum
       scale
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -63,6 +65,8 @@ export const listFoods = /* GraphQL */ `
         volum
         scale
         cal
+        date
+        time
         createdAt
         updatedAt
         owner
@@ -78,6 +82,8 @@ export const getSports = /* GraphQL */ `
       name
       food
       cal
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -96,6 +102,8 @@ export const listSports = /* GraphQL */ `
         name
         food
         cal
+        date
+        time
         createdAt
         updatedAt
         owner
@@ -149,6 +157,8 @@ export const getBloodS = /* GraphQL */ `
       id
       name
       gc
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -166,6 +176,8 @@ export const listBloodS = /* GraphQL */ `
         id
         name
         gc
+        date
+        time
         createdAt
         updatedAt
         owner

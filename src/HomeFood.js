@@ -7,6 +7,7 @@ import './css/HomeFood.css'
 import homeimg from './icons/homeimg.png'
 import blankimg from './icons/blankimg.png'
 
+
 function HomeFood(props){
 
     const initialinput = {gc:''}
@@ -16,6 +17,7 @@ function HomeFood(props){
     const [fetchedfood, setfetchedfood] = useState([])
     const [totalcal, settotalcal] = useState(0)
     const food_keys = Object.keys(food_data);
+    
 
 
     useEffect(()=>{
@@ -107,7 +109,7 @@ function HomeFood(props){
             <p>총칼로리 {totalcal} kcal</p>
             {fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.name}:  {arr.cal} kcal <button onClick={()=>deldata(arr.id)}>삭제</button></p>
+                    <p>{arr.name}:  {arr.cal} kcal {arr.time}<button onClick={()=>deldata(arr.id)}>삭제</button></p>
                 </div>))}
             </div>
         )

@@ -4,12 +4,15 @@ import { createFood } from './graphql'
 import { API, Auth } from 'aws-amplify'
 import {Link} from 'react-router-dom'
 import Modal from 'react-modal';
+import getdate from './functions/date'
 function HomeFoodDetail(props){
     
     const [food,setfood]=useState()
     const [user, setuser] = useState(null)
     const [modalstate, setmodalstate] = useState(false)
     const [loading, setloading] = useState(false)
+    let date = getdate().split('T')[0]
+    let time = getdate().split('T')[1]
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -24,7 +27,7 @@ function HomeFoodDetail(props){
             setloading(true)
             const newTodo = await API.graphql({ 
             query: createFood, 
-            variables: {input:data}
+            variables: {input:{...data, date:date, time:time}}
             });
             if(newTodo.data.createFood){
                 setloading(false)
