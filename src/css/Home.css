@@ -3,18 +3,20 @@
   font-size: 0.75rem;
 }
 .Home .button {
-  width: 50%;
-  height: 25%;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 40%;
+  height: 30%;
   bottom: 0;
   left: 0;
   display: inline-block;
   text-align: center;
-  padding: 3em 2em;
+  padding: 2.5em 2.5em;
   border-radius: 1;
   color: #000000;
   margin-top: 1rem;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.5px;
   text-transform: capitalize;
   text-decoration: none;

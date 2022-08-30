@@ -22,7 +22,7 @@ Amplify.configure(configure)
     return (
       <div className='Router'>
       
-        {usenav===1 ? <header>HOME</header>: null}  
+        {usenav===1 ? <header>Home</header>: null}  
         <body>
           <BrowserRouter>
             <Routes>

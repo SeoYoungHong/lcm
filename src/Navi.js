@@ -28,34 +28,44 @@ function Navi(props){
             <br/>
             <div class="bottom_menu">
                 <div>
-                    <button class='button'>
-                        <Link to="/" style={{textDecoration: 'none'}}><img src={homeimg} width='35' height='35'></img>
-                        <br/>Home</Link>
-                    </button>
+                    <Link to="/" style={{textDecoration: 'none'}}>
+                        <button class='button'>
+                            <img src={homeimg} width='35' height='35' />
+                            <br/>Home
+                        </button>
+                    </Link>
                 </div>
                 <div>
-                    <button class='button'>
-                        <Link to='/about' style={{textDecoration: 'none'}}><img src={aboutimg} width='35' height='35'></img>
-                        <br/>about</Link>
-                    </button>
+                    <Link to='/about' style={{textDecoration: 'none'}}>
+                        <button class='button'>
+                            <img src={aboutimg} width='35' height='35' />
+                            <br/>about
+                        </button>
+                    </Link>
                 </div>
                 <div>
-                    <button class='button'>
-                        <Link to='/mission' style={{textDecoration: 'none'}}><img src={missionimg} width='35' height='35'></img>
-                        <br/>mission</Link>
-                    </button>
+                    <Link to='/mission' style={{textDecoration: 'none'}}>
+                        <button class='button'>
+                            <img src={missionimg} width='35' height='35' />
+                            <br/>mission
+                        </button>
+                    </Link>
                 </div>
                 <div>
-                    <button class='button'>
-                        <Link to='/challenge' style={{textDecoration: 'none'}}><img src={challengeimg} width='35' height='35'></img>
-                        <br/>challenge</Link>
-                    </button>
+                    <Link to='/challenge' style={{textDecoration: 'none'}}>
+                        <button class='button'>
+                            <img src={challengeimg} width='35' height='35' />
+                            <br/>challenge
+                        </button>
+                    </Link>
                 </div>
                 <div>
-                    <button class='button'>
-                        <Link to='/caresession' style={{textDecoration: 'none'}}><img src={caresessionimg} width='35' height='35'></img>
-                        <br/>caresession</Link>
-                    </button>
+                    <Link to='/caresession' style={{textDecoration: 'none'}}>
+                        <button class='button'>
+                            <img src={caresessionimg} width='35' height='35' />
+                            <br/>caresession
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>)

@@ -18,7 +18,7 @@ function Home(props){
     }
     return (
       <div class='Home'>
-        
+
         
           {title ==='홈'? (
             <div>
@@ -28,7 +28,7 @@ function Home(props){
                   <button class='button' onClick={()=>{settitle('BS');props.setusenav(0)}}>혈당</button>
                 </p>
                 <p>
-                  <button class='button' onClick={()=>{props.setusenav(0)}}><Link to="/food" style={{textDecoration: 'none'}}>식이</Link></button>
+                  <Link to="/food" style={{textDecoration: 'none'}}><button class='button' onClick={()=>{props.setusenav(0)}}>식이</button></Link>
                   <button class='button' onClick={()=>{settitle('sports');props.setusenav(0)}}>운동</button>
                 </p>
               </h1>
