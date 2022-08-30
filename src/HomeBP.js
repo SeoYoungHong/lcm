@@ -4,6 +4,7 @@ import {Auth, API} from 'aws-amplify'
 import './css/HomeBP.css'
 import homeimg from './icons/homeimg.png'
 import blankimg from './icons/blankimg.png'
+import getdate from './functions/date.js'
 
 function HomeBP(props){
 
@@ -11,8 +12,8 @@ function HomeBP(props){
     const [user, setuser] = useState(null)
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
-    let today = new Date()
-    const todaydate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate()
+    let today = getdate().split('T')[0]
+    let time = getdate().split('T')[1]
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -25,7 +26,7 @@ function HomeBP(props){
         console.log('createdata')
         if(input){ const newTodo = await API.graphql({ 
             query: createBloodP, 
-            variables: {input: {...input, name: user, date: todaydate}},
+            variables: {input: {...input, name: user, date: today, time:time}},
         })}
         setinput(null)
         fetchdata()
@@ -34,7 +35,7 @@ function HomeBP(props){
         //혈당에서는 혈당에 대한 정보만 뜨게함
         const filter={
             date:{
-                eq: todaydate
+                eq: today
             },  
         }
         const data =await API.graphql({query: listBloodPS, variables:{filter:filter}})
@@ -88,11 +89,11 @@ function HomeBP(props){
         return(
             <div class='Fetchdata'>
                 <div>
-                    <p>{today.getMonth()+1}월 {today.getDate()}일 측정내역</p>
+                    <p>{today} 측정내역</p>
                 </div>
                 {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
                     <div key={idx}>
-                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.createdAt.slice(11,13)}시 <button onClick={()=>deldata(arr.id)}/></p>
+                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.time.slice(0,2)}시 <button onClick={()=>deldata(arr.id)}/></p>
                     </div>))}
             </div> 
         )
