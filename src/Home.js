@@ -5,6 +5,8 @@ import HomeBS from "./HomeBS"
 import HomeFood from "./HomeFood"
 import {withAuthenticator} from '@aws-amplify/ui-react'
 import {Link} from 'react-router-dom'
+import './css/Home.css'
+
 function Home(props){
 
     const [title, settitle]= useState('홈')
@@ -15,18 +17,21 @@ function Home(props){
       if(props.title) settitle(props.title)
     }
     return (
-      <div>
+      <div class='Home'>
+        
         <header>HOME</header>
           {title ==='홈'? (
             <div>
+              <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.
                 <p>
-                  <button onClick={()=>{settitle('BP');props.setusenav(0)}}>혈압</button>
-                  <button onClick={()=>{settitle('BS');props.setusenav(0)}}>혈당</button>
+                  <button class='button' onClick={()=>{settitle('BP');props.setusenav(0)}}>혈압</button>
+                  <button class='button' onClick={()=>{settitle('BS');props.setusenav(0)}}>혈당</button>
                 </p>
                 <p>
-                  <button onClick={()=>{props.setusenav(0)}}><Link to="/food">식이</Link></button>
-                  <button onClick={()=>{settitle('sports');props.setusenav(0)}}>운동</button>
+                  <button class='button' onClick={()=>{props.setusenav(0)}}><Link to="/food" style={{textDecoration: 'none'}}>식이</Link></button>
+                  <button class='button' onClick={()=>{settitle('sports');props.setusenav(0)}}>운동</button>
                 </p>
+              </h1>
             </div>): 
             <div>
               <button onClick={()=>{settitle('홈'); props.setusenav(1)}}><Link to="/">뒤로</Link></button>

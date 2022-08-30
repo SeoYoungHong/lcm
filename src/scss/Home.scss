@@ -1,0 +1,25 @@
+.Home {
+    .h1 {
+        text-align: center;
+        font-size: 0.75rem;
+    }
+
+    .button {
+        width: 50%;
+        height: 25%;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        text-align: center;
+          padding: 3em 2em;
+          border-radius: 1;
+        color: #000000;
+          margin-top:1rem;
+          font-weight: bold;
+          font-size: 2rem;
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+          text-decoration: none;
+        border: 1px solid #c71d1d;
+    }
+}
