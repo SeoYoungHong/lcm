@@ -4,7 +4,7 @@ export const NameContext = createContext({
     username:'',
     changeUserName: () => {},
 })
-//
+
 const Store = ({children}) => {
     const [username,setUsername] = useState('');
     const changeUserName = () => {

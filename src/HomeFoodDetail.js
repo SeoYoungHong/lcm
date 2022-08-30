@@ -9,6 +9,7 @@ function HomeFoodDetail(props){
     const [food,setfood]=useState()
     const [user, setuser] = useState(null)
     const [modalstate, setmodalstate] = useState(false)
+    const [loading, setloading] = useState(false)
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -19,10 +20,17 @@ function HomeFoodDetail(props){
     },[])
 
     async function createdata(data){
-        if(data){const newTodo = await API.graphql({ 
+        if(data){
+            setloading(true)
+            const newTodo = await API.graphql({ 
             query: createFood, 
             variables: {input:data}
-        })}
+            });
+            if(newTodo.data.createFood){
+                setloading(false)
+
+            }
+        }
     }
 
     function getid(){
@@ -33,6 +41,7 @@ function HomeFoodDetail(props){
     
     return(
         <div>
+            {loading? <div>로딩중</div>:null}
             {food ? (
                 <div>
                     <Modal isOpen={modalstate} ariaHideApp={false}>
