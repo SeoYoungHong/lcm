@@ -1,0 +1,33 @@
+.Challenge {
+    .header {
+        font-size: 8vw;
+        font-weight: bold;
+    }
+    .Category {
+        .button {
+            width: 25%;
+            height: 4.5vh;
+            text-align: center;
+        &:hover{
+            background-color: rgb(0, 143, 29);
+            color: white;
+              color: #fff;
+              background-position: 99% 50%;
+          }
+        }
+    }
+    .Fetchdata {
+        .parent {
+            display: block;
+            font-size: 0; /* 가장 중요한 font-size: 0; 속성 */
+            margin: 0 -5px; /* 너비간 10px 간격을 만들기 위해 남은 5px을 양옆으로 땡겨줌 */
+        }
+        .parent .child {
+            display: inline-block;
+            width: 50%;
+            vertical-align: middle;
+            text-align: center;
+            box-sizing: border-box;
+        }
+    }
+}

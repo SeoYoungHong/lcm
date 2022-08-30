@@ -3,6 +3,8 @@ import {API, Auth} from 'aws-amplify'
 import { createChallenge, deleteChallenge, listChallenges} from './graphql'
 import ChallengeDetail from "./ChallengeDetail";
 import { ComponentPropsToStylePropsMap } from "@aws-amplify/ui-react";
+import './css/Challenge.css'
+import cutyimg from './icons/cuty.png'
 
 function Challenge(props){
 
@@ -69,9 +71,9 @@ function Challenge(props){
         const categorys=['식사', '운동', '생활', 'my']
         if(categorystate==false) return 
         return(
-            <div>
+            <div class='Category'>
                 {categorys.map((ct, index)=>(
-                    <button key={index} onClick={()=>setcategory(ct)}>{ct}</button>
+                    <button class='button' key={index} onClick={()=>setcategory(ct)}>{ct}</button>
                     
                 ))}
             </div>
@@ -80,7 +82,7 @@ function Challenge(props){
 
     function Fetchdata(){
         return(
-            <div>
+            <div className='Fetchdata'>
             {fetcheddata &&fetcheddata.data.listChallenges.items.map((arr, idx)=>(
                 <div key={idx}>
 
@@ -91,21 +93,24 @@ function Challenge(props){
                         </div>
                         : null}
                     {detailstate==='challenge' ? 
-                        <div>
-                            <button onClick={()=>{setdetailstate(arr.id); setcategorystate(false); props.setusenav(0)}}>
-                                <p>{arr.id}</p>
-                                <p>이미지</p>
-                                <p>user count: {arr.usercount}</p>
-                                <p>title: {arr.title}</p>
-                            </button>
-                            <button onClick={()=>deldata(arr.id)}>
-                                삭제
-                            </button>
-                        </div> :null}
+                        <div class='parent'>
+                            <div class='child'>
+                                <button onClick={()=>{setdetailstate(arr.id); setcategorystate(false); props.setusenav(0)}}>
+                                    <p>tag</p>
+                                    <p>{arr.id}</p>
+                                    <p><img src={cutyimg} width='150' height='150'/></p>
+                                    <p>user count: {arr.usercount}</p>
+                                </button>
+                                <h5>title: {arr.title}</h5>
+                                <button onClick={()=>deldata(arr.id)}>
+                                    삭제
+                                </button>
+                            </div>
+                        </div> : null}
                 </div>))}
-            </div> 
-        )
+            </div>)
     }
+
     function CreateData(){
         if(group) {
             const usergroup = group.idToken.payload['cognito:groups']
@@ -117,8 +122,8 @@ function Challenge(props){
     
 
     return(
-        <div>
-            <header>Challenge</header>
+        <div className='Challenge'>
+            <header className='header'>질환 극복 챌린지</header>
             {CreateData()}
             {InPut()}
             {Category()}
