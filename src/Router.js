@@ -13,6 +13,8 @@ import {withAuthenticator} from '@aws-amplify/ui-react'
 import configure from './aws-exports'
 import HomeFoodDetail from './HomeFoodDetail';
 import HomeFood from './HomeFood';
+import logo from './icons/logo_manjil.png' 
+import './css/Router.css'
 
 //asd
 Amplify.configure(configure)
@@ -22,7 +24,7 @@ Amplify.configure(configure)
     return (
       <div className='Router'>
       
-        {usenav===1 ? <header>Home</header>: null}  
+        {usenav===1 ? <header><img src={logo} width='140' height='50'/></header>: null}  
         <body>
           <BrowserRouter>
             <Routes>
