@@ -162,6 +162,8 @@ export const createBloodP = /* GraphQL */ `
       bp1
       bp2
       bp3
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -179,6 +181,8 @@ export const updateBloodP = /* GraphQL */ `
       bp1
       bp2
       bp3
+      date
+      time
       createdAt
       updatedAt
       owner
@@ -196,6 +200,8 @@ export const deleteBloodP = /* GraphQL */ `
       bp1
       bp2
       bp3
+      date
+      time
       createdAt
       updatedAt
       owner

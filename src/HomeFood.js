@@ -3,6 +3,9 @@ import {createFood, deleteFood, listFoods } from "./graphql";
 import {Auth, API} from 'aws-amplify'
 import food_data from './food_data.json'
 import { Link } from "react-router-dom";
+import './css/HomeFood.css'
+import homeimg from './icons/homeimg.png'
+import blankimg from './icons/blankimg.png'
 
 function HomeFood(props){
 
@@ -128,7 +131,14 @@ function HomeFood(props){
     
 
     return(
-        props.titles === 'Food' ?<div>
+        props.titles === 'Food' ?
+        <div class='HomeFood'>
+            <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.</h1>
+            <h2 class='h2'>
+                <img class='img1' src={blankimg} width='25' height='30' align='middle'/>
+                식이
+                <img class='img' src={homeimg} width='25' height='30' align='middle'/>
+            </h2>
             <div>{InPut()}</div>
             <div>{Fetchdata()}</div>
             <div>{Search()}</div>

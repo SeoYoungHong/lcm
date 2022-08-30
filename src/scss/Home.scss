@@ -1,25 +1,94 @@
 .Home {
     .h1 {
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 1.5vw;
     }
 
-    .button {
-        width: 50%;
-        height: 25%;
+    .button1 {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        width: 40%;
+        height: 30%;
         bottom: 0;
         left: 0;
         display: inline-block;
         text-align: center;
-          padding: 3em 2em;
+          padding: 5vh 5vw;
           border-radius: 1;
         color: #000000;
-          margin-top:1rem;
+          margin-top:3vw;
           font-weight: bold;
-          font-size: 2rem;
+          font-size: 5vw;
           letter-spacing: 0.5px;
           text-transform: capitalize;
           text-decoration: none;
-        border: 1px solid #c71d1d;
+        border: 1vw solid red;
+        background-color: white;
+    }
+
+    .button2 {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        width: 40%;
+        height: 30%;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        text-align: center;
+          padding: 5vh 5vw;
+          border-radius: 1;
+        color: #000000;
+          margin-top:3vw;
+          font-weight: bold;
+          font-size: 5vw;
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+          text-decoration: none;
+        border: 1vw solid rgb(252, 41, 221);
+        background-color: white;
+    }
+
+    .button3 {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        width: 40%;
+        height: 30%;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        text-align: center;
+          padding: 5vh 5vw;
+          border-radius: 1;
+        color: #000000;
+          margin-top:3vw;
+          font-weight: bold;
+          font-size: 5vw;
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+          text-decoration: none;
+        border: 1vw solid rgb(122, 173, 21);
+        background-color: white;
+    }
+
+    .button4 {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        width: 40%;
+        height: 30%;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        text-align: center;
+          padding: 5vh 5vw;
+          border-radius: 1;
+        color: #000000;
+          margin-top:3vw;
+          font-weight: bold;
+          font-size: 5vw;
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+          text-decoration: none;
+        border: 1vw solid #2f1cd3;
+        background-color: white;
     }
 }
