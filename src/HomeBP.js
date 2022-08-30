@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { createBloodP, deleteBloodP, listBloodPS } from "./graphql";
 import {Auth, API} from 'aws-amplify'
+import './css/HomeBP.css'
+import homeimg from './icons/homeimg.png'
+import blankimg from './icons/blankimg.png'
 
 function HomeBP(props){
 
@@ -100,6 +103,12 @@ function HomeBP(props){
     return(
         props.titles === 'BP' ?
         <div class='HomeBP'>
+            <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.</h1>
+            <h2 class='h2'>
+                <img class='img1' src={blankimg} width='25' height='30' align='middle'/>
+                혈압
+                <img class='img' src={homeimg} width='25' height='30' align='middle'/>
+            </h2>
             {InPut()}
             {Fetchdata()}
         </div>: null

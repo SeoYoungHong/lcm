@@ -1,0 +1,29 @@
+.HomeFood {
+    .h1 {
+        text-align: center;
+        font-size: 1.5vw;
+    }
+
+    .h2 {
+        text-align: center;
+        padding: 2vw 2vw;
+        display: block;
+        border: 1vw;
+        color: black;
+        background-color: rgb(255, 255, 255);
+        margin-left: 10vw;
+        margin-right: 10vw;
+        border-radius: 10px;
+        border-color: rgb(122, 173, 21);
+        border-width: 1vw;
+        border-style: solid;
+
+        .img {
+            float: right;
+        }
+
+        .img1 {
+            float: left;
+        }
+    }
+}
