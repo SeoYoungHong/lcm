@@ -24,9 +24,10 @@ Amplify.configure(configure)
       
         <header>
         </header>
-        <h1>
-        <BrowserRouter>
-            <body>
+        
+        <body>
+          <BrowserRouter>
+              
               <Routes>
                   <Route exact path="/" element={(<Home setusenav={setusenav}/>)} />
                   <Route path="/about" element={About} /> 
@@ -36,10 +37,11 @@ Amplify.configure(configure)
                   <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
                   <Route path="/caresession" element={(<CareSession/>)} /> 
               </Routes> 
-            </body>
-          <Navi usenav={usenav} class='Navi'/>
-        </BrowserRouter>
-        </h1>
+              
+            <Navi usenav={usenav} class='Navi'/>
+          </BrowserRouter>
+        </body>
+        
         
         
     </div>

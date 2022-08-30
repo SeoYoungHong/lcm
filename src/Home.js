@@ -10,7 +10,6 @@ function Home(props){
     const [title, settitle]= useState('홈')
     useEffect(()=>{
       changetitle()
-      props.setusenav(1)
     })
     function changetitle(){
       if(props.title) settitle(props.title)
@@ -30,7 +29,7 @@ function Home(props){
                 </p>
             </div>): 
             <div>
-              <button onClick={()=>settitle('홈')}><Link to="/">뒤로</Link></button>
+              <button onClick={()=>{settitle('홈'); props.setusenav(1)}}><Link to="/">뒤로</Link></button>
               <HomeBP titles={title}/>
               <HomeBS titles={title}/>
               <HomeFood titles={title}/>
