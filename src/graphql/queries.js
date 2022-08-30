@@ -113,6 +113,7 @@ export const getBloodP = /* GraphQL */ `
       bp2
       bp3
       date
+      time
       createdAt
       updatedAt
       owner
@@ -133,6 +134,7 @@ export const listBloodPS = /* GraphQL */ `
         bp2
         bp3
         date
+        time
         createdAt
         updatedAt
         owner

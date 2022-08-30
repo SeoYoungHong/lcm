@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { createBloodP, deleteBloodP, listBloodPS } from "./graphql";
 import {Auth, API} from 'aws-amplify'
+import datetime from './functions/date.js'
+import { ComponentPropsToStylePropsMapKeys } from "@aws-amplify/ui-react";
 
 function HomeBP(props){
 
@@ -9,7 +11,8 @@ function HomeBP(props){
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
     let today = new Date()
-    const todaydate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate()
+    const todaydate = datetime().split('T')[0]
+    const createdAt=datetime().split('T')[1]
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -20,9 +23,10 @@ function HomeBP(props){
 
     async function createdata(){
         console.log('createdata')
+        
         if(input){ const newTodo = await API.graphql({ 
             query: createBloodP, 
-            variables: {input: {...input, name: user, date: todaydate}},
+            variables: {input: {...input, name: user, date:todaydate ,time:createdAt}},
         })}
         setinput(null)
         fetchdata()
@@ -89,7 +93,7 @@ function HomeBP(props){
                 </div>
                 {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
                     <div key={idx}>
-                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.createdAt.slice(11,13)}시 <button onClick={()=>deldata(arr.id)}/></p>
+                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.createdAt} <button onClick={()=>deldata(arr.id)}/></p>
                     </div>))}
             </div> 
         )
