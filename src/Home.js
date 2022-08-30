@@ -19,7 +19,7 @@ function Home(props){
     return (
       <div class='Home'>
         
-        <header>HOME</header>
+        
           {title ==='홈'? (
             <div>
               <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.

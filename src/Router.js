@@ -17,7 +17,7 @@ import HomeFood from './HomeFood';
 //asd
 Amplify.configure(configure)
   
- function Router() {
+  function Router() {
     const [usenav, setusenav]=useState(1)
     return (
       <div className='Router'>
@@ -27,16 +27,16 @@ Amplify.configure(configure)
         
         <body>
           <BrowserRouter>
-              
-              <Routes>
-                  <Route exact path="/" element={(<Home setusenav={setusenav}/>)} />
-                  <Route path="/about" element={About} /> 
-                  <Route path="/mission" element={(<Mission/>)} /> 
-                  <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
-                  <Route path="/food/:id" element={(<HomeFoodDetail setusenav={setusenav}/>)} />
-                  <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
-                  <Route path="/caresession" element={(<CareSession/>)} /> 
-              </Routes> 
+            <Routes>
+              {usenav===1 ? <header>HOME</header>: null}
+              <Route exact path="/" element={(<Home setusenav={setusenav} />)} />
+              <Route path="/about" element={About} /> 
+              <Route path="/mission" element={(<Mission/>)} /> 
+              <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
+              <Route path="/food/:id" element={(<HomeFoodDetail setusenav={setusenav}/>)} />
+              <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
+              <Route path="/caresession" element={(<CareSession/>)} /> 
+            </Routes> 
               
             <Navi usenav={usenav} class='Navi'/>
           </BrowserRouter>
