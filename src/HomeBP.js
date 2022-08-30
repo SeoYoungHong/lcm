@@ -49,25 +49,25 @@ function HomeBP(props){
     //component
     function InPut(){
         return(
-            <div>
-                <input
+            <div class='InPut'>
+                <p><input
                     name = 'bp1'
                     id = 'bp1'
                     placeholder={'혈압'}
                     onChange={(e)=>put()}
-                />
-                <input
+                /></p>
+                <p><input
                     name = 'bp2'
                     id = 'bp2'
                     placeholder={'심박수'}
                     onChange={()=>put()}
-                />
-                <input
+                /></p>
+                <p><input
                     name = 'bp3'
                     id = 'bp3'
                     placeholder={'당화혈색소'}
                     onChange={()=>put()}
-                />
+                /></p>
                 <button onClick={()=>createdata()}>저장</button>
                 
             </div>
@@ -76,7 +76,7 @@ function HomeBP(props){
     
     function Fetchdata(){
         return(
-            <div>
+            <div class='Fetchdata'>
             {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
                 <div key={idx}>
                     <p>{arr.name} {arr.bp1} {arr.bp2} {arr.bp3} <button onClick={()=>deldata(arr.id)}/></p>
@@ -88,9 +88,10 @@ function HomeBP(props){
     
 
     return(
-        props.titles === 'BP' ?<div>
-            <div>{InPut()}</div>
-            <div>{Fetchdata()}</div>
+        props.titles === 'BP' ?
+        <div class='HomeBP'>
+            {InPut()}
+            {Fetchdata()}
         </div>: null
     )
 }

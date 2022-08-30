@@ -64,7 +64,7 @@ function HomeBP(props){
             <div>
             {fetcheddata &&fetcheddata.data.listBloodS.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.name} <button onClick={()=>deldata(arr.id)}/></p>
+                    <p>{arr.gc} <button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
             </div> 
         )
