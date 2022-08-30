@@ -85,11 +85,11 @@ function HomeBP(props){
         return(
             <div class='Fetchdata'>
                 <div>
-                    <p>{today.getMonth()+1}월 {today.getDate()}일</p>
+                    <p>{today.getMonth()+1}월 {today.getDate()}일 측정내역</p>
                 </div>
                 {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
                     <div key={idx}>
-                        <p>{arr.name} {arr.bp1} {arr.bp2} {arr.bp3} {arr.date} <button onClick={()=>deldata(arr.id)}/></p>
+                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.createdAt.slice(11,13)}시 <button onClick={()=>deldata(arr.id)}/></p>
                     </div>))}
             </div> 
         )

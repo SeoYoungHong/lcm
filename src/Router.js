@@ -25,7 +25,6 @@ Amplify.configure(configure)
       <div className='Router'>
       
         {usenav===1 ? <header><img src={logo} width='140' height='50'/></header>: null}  
-        <body>
           <BrowserRouter>
             <Routes>
               
@@ -40,11 +39,8 @@ Amplify.configure(configure)
               
             <Navi usenav={usenav} class='Navi'/>
           </BrowserRouter>
-        </body>
+        </div>
         
-        
-        
-    </div>
     );
   }
 
