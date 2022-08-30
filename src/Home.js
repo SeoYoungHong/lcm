@@ -28,12 +28,12 @@ function Home(props){
             <div>
               <h1 class='h1'> 매일을 기록하며 하루를 시작하세요.
                 <p>
-                  <button class='button' onClick={()=>changepage('BP')}>혈압</button>
-                  <button class='button' onClick={()=>changepage('BS')}>혈당</button>
+                  <button class='button1' onClick={()=>changepage('BP')}>혈압</button>
+                  <button class='button2' onClick={()=>changepage('BS')}>혈당</button>
                 </p>
                 <p>
-                  <Link to="/food" style={{textDecoration: 'none'}}><button class='button' onClick={()=>{props.setusenav(0)}}>식이</button></Link>
-                  <button class='button' onClick={()=>changepage('sports')}>운동</button>
+                  <Link to="/food" style={{textDecoration: 'none'}}><button class='button3' onClick={()=>{props.setusenav(0)}}>식이</button></Link>
+                  <button class='button4' onClick={()=>changepage('sports')}>운동</button>
                 </p>
               </h1>
             </div>): 

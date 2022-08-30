@@ -1,0 +1,26 @@
+.HomeBP .h1 {
+  text-align: center;
+  font-size: 1.5vw;
+}
+.HomeBP .h2 {
+  text-align: center;
+  padding: 2vw 2vw;
+  display: block;
+  border: 1vw;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  margin-left: 10vw;
+  margin-right: 10vw;
+  border-radius: 10px;
+  border-color: red;
+  border-width: 1vw;
+  border-style: solid;
+}
+.HomeBP .h2 .img {
+  float: right;
+}
+.HomeBP .h2 .img1 {
+  float: left;
+}
+
+/*# sourceMappingURL=HomeBP.css.map */
