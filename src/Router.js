@@ -22,13 +22,11 @@ Amplify.configure(configure)
     return (
       <div className='Router'>
       
-        <header>
-        </header>
-        
+        {usenav===1 ? <header>HOME</header>: null}  
         <body>
           <BrowserRouter>
             <Routes>
-              {usenav===1 ? <header>HOME</header>: null}
+              
               <Route exact path="/" element={(<Home setusenav={setusenav} />)} />
               <Route path="/about" element={About} /> 
               <Route path="/mission" element={(<Mission/>)} /> 
