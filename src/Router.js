@@ -23,21 +23,24 @@ Amplify.configure(configure)
       <div className='Router'>
       
         <header>
+        </header>
         <h1>
         <BrowserRouter>
-            <Routes>
-                <Route exact path="/" element={(<Home setusenav={setusenav}/>)} />
-                <Route path="/about" element={About} /> 
-                <Route path="/mission" element={(<Mission/>)} /> 
-                <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
-                <Route path="/food/:id" element={(<HomeFoodDetail setusenav={setusenav}/>)} />
-                <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
-                <Route path="/caresession" element={(<CareSession/>)} /> 
-            </Routes> 
+            <body>
+              <Routes>
+                  <Route exact path="/" element={(<Home setusenav={setusenav}/>)} />
+                  <Route path="/about" element={About} /> 
+                  <Route path="/mission" element={(<Mission/>)} /> 
+                  <Route path="/challenge" element={(<Challenge setusenav={setusenav}/>)} /> 
+                  <Route path="/food/:id" element={(<HomeFoodDetail setusenav={setusenav}/>)} />
+                  <Route path="/food" element={(<Home setusenav={setusenav} title={'Food'}/>)} />
+                  <Route path="/caresession" element={(<CareSession/>)} /> 
+              </Routes> 
+            </body>
           <Navi usenav={usenav} class='Navi'/>
         </BrowserRouter>
         </h1>
-        </header>
+        
         
     </div>
     );
