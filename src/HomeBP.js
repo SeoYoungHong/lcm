@@ -8,6 +8,8 @@ function HomeBP(props){
     const [user, setuser] = useState(null)
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
+    let today = new Date()
+    const todaydate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate()
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -20,14 +22,19 @@ function HomeBP(props){
         console.log('createdata')
         if(input){ const newTodo = await API.graphql({ 
             query: createBloodP, 
-            variables: {input: {...input, name: user}},
+            variables: {input: {...input, name: user, date: todaydate}},
         })}
         setinput(null)
         fetchdata()
     }
     async function fetchdata(){
         //혈당에서는 혈당에 대한 정보만 뜨게함
-        const data =await API.graphql({query: listBloodPS})
+        const filter={
+            date:{
+                eq: todaydate
+            },  
+        }
+        const data =await API.graphql({query: listBloodPS, variables:{filter:filter}})
             .then(data => setfetcheddata(data))
             .catch(err=>console.log(err))
         console.log("datafetch success")
@@ -77,10 +84,13 @@ function HomeBP(props){
     function Fetchdata(){
         return(
             <div class='Fetchdata'>
-            {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
-                <div key={idx}>
-                    <p>{arr.name} {arr.bp1} {arr.bp2} {arr.bp3} <button onClick={()=>deldata(arr.id)}/></p>
-                </div>))}
+                <div>
+                    <p>{today.getMonth()+1}월 {today.getDate()}일</p>
+                </div>
+                {fetcheddata &&fetcheddata.data.listBloodPS.items.map((arr, idx)=>(
+                    <div key={idx}>
+                        <p>{arr.name} {arr.bp1} {arr.bp2} {arr.bp3} {arr.date} <button onClick={()=>deldata(arr.id)}/></p>
+                    </div>))}
             </div> 
         )
     }
