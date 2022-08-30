@@ -6,21 +6,23 @@ import { DatasFetch } from "./context/Store";
 
 function Homerecord(props){
     if(props.titles!=='record') return(null)
-
-
-    const today = getdate().split('T')[0]
-    const {fetchdataall}=useContext(DatasFetch)
+    const {fetchdataall,fetchdataBP, fetchdedataC, fetchdedataBS, fetchdedatafood, fetchdedataBP}=useContext(DatasFetch)
     
     
     useEffect(()=>{
         fetchdata()
     },[])
-    async function fetchdata(){
+    function fetchdata(){
         fetchdataall()
     }
     
     return(
-        <div>기록확인</div>
+        <div class='Fetchdata'>
+                {fetchdedataBP &&fetchdedataBP.data.listBloodPS.items.map((arr, idx)=>(
+                    <div key={idx}>
+                        <p>혈압:{arr.bp1} 심박수:{arr.bp2} 당화혈색소:{arr.bp3} 측정시간:{arr.time.slice(0,2)}시</p>
+                    </div>))}
+            </div> 
     )
 
 }

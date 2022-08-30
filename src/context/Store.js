@@ -35,12 +35,12 @@ const Store = ({children}) => {
     async function fetchdata(lists, path, filters){
         //혈당에서는 혈당에 대한 정보만 뜨게함
         var filter={date:{eq: date},}
-        if(filters){filter = filters}
+        //if(filters){filter = filters}
         
         if(lists){const data =await API.graphql({query: lists, variables:{filter:filter}})
-            .then(data => path(data))
+            .then(data => {path(data)})
             .catch(err=>console.log(err))
-        console.log("datafetch success")
+            console.log("datafetch success")
         }
         else(console.log('데이터를 입력해라'))
     }
@@ -72,8 +72,9 @@ const Store = ({children}) => {
                 fetchdataChallenge,
                 fetchdataall
             }}>   
-            </DatasFetch.Provider>
             {children}
+            </DatasFetch.Provider>
+            
         </div>
     )
 }
