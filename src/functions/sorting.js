@@ -59,7 +59,6 @@ export const maxtime=(arr)=>{
         if(splikeys[keys][0]>h){
             h=splikeys[keys][0]
             m=splikeys[keys][1]
-            console.log(splikeys[keys][2])
             s=splikeys[keys][2].split('.')[0]
             maxkey=keys
         }
@@ -83,8 +82,5 @@ export const maxtime=(arr)=>{
         
     }
     //가장 늦은 시간의 id를 넘겨준다.
-    console.log(arr)
-    console.log(arrkeys)
-    console.log(maxkey)
     return arr[arrkeys[maxkey]]
 }

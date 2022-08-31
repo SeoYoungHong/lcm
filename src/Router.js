@@ -27,7 +27,6 @@ Amplify.configure(configure)
         {usenav===1 ? <header><img src={logo} width='140' height='50'/></header>: null}  
           <BrowserRouter>
             <Routes>
-              
               <Route exact path="/" element={(<Home setusenav={setusenav} />)} />
               <Route path="/about" element={About} /> 
               <Route path="/mission" element={(<Mission/>)} /> 

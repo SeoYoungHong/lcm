@@ -13,11 +13,11 @@ export const DatasFetch = createContext({
     fetchdedataBS:[],
     fetchdedatafood:[],
     fetchdedataC:[],
-    fetchdataBP:()=>{},
-    fetchdataBS:()=>{},
-    fetchdataFood:()=>{},
-    fetchdataChallenge:()=>{},
-    fetchdataall:()=>{}
+    fetchdataBP:(date)=>{},
+    fetchdataBS:(date)=>{},
+    fetchdataFood:(date)=>{},
+    fetchdataChallenge:(date)=>{},
+    fetchdataall:(date)=>{},
 })
 
 
@@ -27,15 +27,16 @@ const Store = ({children}) => {
     const [fetchdedataBP, setfetcheddataBP]=useState()
     const [fetchdedataBS, setfetcheddataBS]=useState()
     const [fetchdedataC, setfetcheddataC]=useState()
+    
     const changeUserName = () => {
         setUsername('서용');
     }
     let date=getdate().split('T')[0]
     let time=getdate().split('T')[1]
-    async function fetchdata(lists, path, filters){
+    async function fetchdata(lists, path, dates){
         //혈당에서는 혈당에 대한 정보만 뜨게함
         var filter={date:{eq: date},}
-        //if(filters){filter = filters}
+        if(dates){filter = {date:{eq: dates},}}
         
         if(lists){const data =await API.graphql({query: lists, variables:{filter:filter}})
             .then(data => {path(data)})
@@ -44,15 +45,15 @@ const Store = ({children}) => {
         }
         else(console.log('데이터를 입력해라'))
     }
-    function fetchdataFood(){fetchdata(listFoods, setfetcheddatafood)}
-    function fetchdataBP(){fetchdata(listBloodPS, setfetcheddataBP)}
-    function fetchdataBS(){fetchdata(listBloodS, setfetcheddataBS)}
-    function fetchdataChallenge(){fetchdata(listChallenges, setfetcheddataC)}
-    function fetchdataall(){
-        fetchdataBP()
-        fetchdataBS()
-        fetchdataChallenge()
-        fetchdataFood()
+    function fetchdataFood(date){fetchdata(listFoods, setfetcheddatafood, date)}
+    function fetchdataBP(date){fetchdata(listBloodPS, setfetcheddataBP, date)}
+    function fetchdataBS(date){fetchdata(listBloodS, setfetcheddataBS, date)}
+    function fetchdataChallenge(date){fetchdata(listChallenges, setfetcheddataC, date)}
+    function fetchdataall(date){
+        fetchdataBP(date)
+        fetchdataBS(date)
+        fetchdataChallenge(date)
+        fetchdataFood(date)
     }
     return(
         <div>
