@@ -9,6 +9,7 @@ import './css/Home.css'
 import Homerecord from "./Homerecord"
 import Homereport from "./Homereport"
 
+
 function Home(props){
 
     const [title, settitle]= useState('홈')
