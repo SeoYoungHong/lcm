@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { API } from "aws-amplify";
-import {listBloodPS} from './graphql'
 import getdate from "./functions/date";
 import { DatasFetch } from "./context/Store";
 
