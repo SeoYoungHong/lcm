@@ -4,21 +4,27 @@ import {listBloodPS} from './graphql'
 import getdate from "./functions/date";
 import { DatasFetch } from "./context/Store";
 import { maxtime } from "./functions/sorting";
-import { Calendar } from "react-calendar";
+import Calendar from 'react-calendar';
+import moment from "moment";
 
 function Homerecord(props){
     if(props.titles!=='record') return(null)
-    const {fetchdataall,fetchdataBP, fetchdedataC, fetchdedataBS, fetchdedatafood, fetchdedataBP}=useContext(DatasFetch)
+    const {fetchdataall,reportdate, setreportdate, fetchdedataC, fetchdedataBS, fetchdedatafood, fetchdedataBP}=useContext(DatasFetch)
     const [totalcal, settotalcal] = useState(0)
+    const [value, onChange] = useState(new Date());
     
     useEffect(()=>{
         fetchdata()
     },[])
+    useEffect(()=>{
+        fetchdata()
+    },[reportdate]) 
+    useEffect(()=>{
+        setreportdate(moment(value).format("YYYY-MM-DD"))
+    },[value])
     function fetchdata(){
-        fetchdataall()
+        fetchdataall(moment(value).format("YYYY-MM-DD"))
     }
-
-
 
 
 
@@ -82,10 +88,23 @@ function Homerecord(props){
         else return null
         
     }
+
+    function Calendars() {
+        
+        return (
+            <div>
+              <Calendar onChange={onChange} value={value} />
+                 <div >
+                   지금 날짜: {moment(value).format("YYYY년 MM월 DD일")}
+                 </div>
+            </div>
+          );
+      }
+      
     
     return(
         <div class='Fetchdata'>
-            <Calendar/>
+            <Calendars/>
             <LastBP/>
             <LastBS/>
             <LastFood/>
