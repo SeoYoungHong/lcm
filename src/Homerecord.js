@@ -7,8 +7,9 @@ import moment from "moment";
 
 function Homerecord(props){
     if(props.titles!=='record') return(null)
-    const {fetchdataall,reportdate, setreportdate, fetchdedataC, fetchdedataBS, fetchdedatafood, fetchdedataBP}=useContext(DatasFetch)
+    const {fetchdataall,reportdate, setreportdate, fetcheddataSports, fetchdedataC, fetchdedataBS, fetchdedatafood, fetchdedataBP}=useContext(DatasFetch)
     const [totalcal, settotalcal] = useState(0)
+    const [totalcal1, settotalcal1] = useState(0)
     const [value, onChange] = useState(new Date());
     
     useEffect(()=>{
@@ -70,21 +71,31 @@ function Homerecord(props){
         else return null   
     }
     function LastFood(){
+        var cal=0
         if(fetchdedatafood){
-            let cal=0
-            fetchdedatafood &&fetchdedatafood.data.listFoods.items.map((arr, idx)=>{
+            fetchdedatafood.data.listFoods.items.map((arr, idx)=>{
                 cal=cal+arr.cal   
-            })
-            settotalcal(cal)
-            return(
-                <div>
-                    섭취칼로리: {totalcal}
-                </div>
-            )
+            })    
+        } 
+        return(
+            <div>
+                섭취칼로리: {cal}
+            </div>
+        )  
+    }
+
+    function LastSport(){
+        var cal=0
+        if(fetcheddataSports){
+            fetcheddataSports.data.listSports.items.map((arr, idx)=>{
+                cal=cal+arr.cal   
+            })    
         }
-            
-        else return null
-        
+        return(
+            <div>
+                소비칼로리: {cal}
+            </div>
+        )  
     }
 
     function Calendars() {
@@ -106,6 +117,7 @@ function Homerecord(props){
             <LastBP/>
             <LastBS/>
             <LastFood/>
+            <LastSport/>
             
             </div> 
     )

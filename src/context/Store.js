@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from "react";
 import getdate from "../functions/date";
-import { listBloodPS, listBloodS, listChallenges, listFoods } from "../graphql";
+import { listBloodPS, listBloodS, listChallenges, listFoods, listSports } from "../graphql";
 import { API } from "aws-amplify";
 import moment from "moment";
 
@@ -14,6 +14,7 @@ export const DatasFetch = createContext({
     fetchdedataBS:[],
     fetchdedatafood:[],
     fetchdedataC:[],
+    fetcheddataSports:[],
     reportdate:[],
     fetchdataBP:()=>{},
     fetchdataBS:()=>{},
@@ -30,6 +31,7 @@ const Store = ({children}) => {
     const [fetchdedataBP, setfetcheddataBP]=useState()
     const [fetchdedataBS, setfetcheddataBS]=useState()
     const [fetchdedataC, setfetcheddataC]=useState()
+    const [fetcheddataSports, setfetcheddataSports]=useState()
     const [reportdate, setreportdate] = useState(moment(todaydate).format("YYYY-MM-DD"))
     const todaydate= new Date()
     const changeUserName = () => {
@@ -54,12 +56,14 @@ const Store = ({children}) => {
     function fetchdataFood(){fetchdata(listFoods, setfetcheddatafood, reportdate)}
     function fetchdataBP(){fetchdata(listBloodPS, setfetcheddataBP, reportdate)}
     function fetchdataBS(){fetchdata(listBloodS, setfetcheddataBS, reportdate)}
+    function fetchdataSports(){fetchdata(listSports, setfetcheddataSports, reportdate)}
     function fetchdataChallenge(){fetchdata(listChallenges, setfetcheddataC, reportdate)}
     function fetchdataall(){
         fetchdataBP()
         fetchdataBS()
         fetchdataChallenge()
         fetchdataFood()
+        fetchdataSports()
     }
     return(
         <div>
@@ -74,12 +78,15 @@ const Store = ({children}) => {
                 fetchdedataBS,
                 fetchdedatafood,
                 fetchdedataC,
+                fetcheddataSports,
                 fetchdataBP,
                 fetchdataBS,
                 fetchdataFood,
                 fetchdataChallenge,
+                fetchdataSports,
                 fetchdataall,
                 setreportdate,
+
             }}>   
             {children}
             </DatasFetch.Provider>

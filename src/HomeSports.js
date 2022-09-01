@@ -52,12 +52,13 @@ function HomeSports(props){
         setinput(food)
     }
     async function putmin(){
-        let mins = await document.getElementById('sports').value;
+        let mins = await document.getElementById('min').value;
         setmin(mins)
     }
 
     //grapql데이터를 다루는 코드
     async function createdata(data){
+        data['cal']=300*min/data['cal']
         var filter={date:{eq: date},}
         if(data){const newTodo = await API.graphql({ 
             query: createSports, 
@@ -66,6 +67,7 @@ function HomeSports(props){
         fetchdata()
     }
     async function fetchdata(){
+        var filter={date:{eq: date},}
         const data =await API.graphql({query: listSports})
             .then(data => setfetcheddata(data))
             .catch(err=>console.log(err))
@@ -118,15 +120,15 @@ function HomeSports(props){
                 <div>{fetchedfood.map((data, index)=>(
                     <div key={index}>   
                         {/*<button onClick={()=>createdata(data)}>{data.name}</button>*/}
-                        <button onClick={()=>createdata({name:data.name, cal:300})}>
-                            {data.name}
-                            <input
+                        <input
                                 name = 'min'
                                 id = 'min'
                                 placeholder={'운동시간입력'}
                                 onChange={()=>putmin()}
                             />
-                            </button>
+                        300kcal/ {data.detail.time} 분
+                        <button onClick={()=>createdata({name:data.name, cal:data.detail.time})}>
+                        {data.name}</button>
                     </div>
                 )
                 )}</div>

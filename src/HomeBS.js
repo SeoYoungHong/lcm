@@ -12,8 +12,8 @@ function HomeBP(props){
     const [user, setuser] = useState(null)
     const [input, setinput] = useState(initialinput)
     const [fetcheddata, setfetcheddata] = useState()
-    let date = getdate().split('T')[0]
-    let time = getdate().split('T')[1]
+    var date = getdate().split('T')[0]
+    var time = getdate().split('T')[1]
     useEffect(()=>{
         Auth.currentAuthenticatedUser()
         .then(user=>setuser(user.username))
@@ -23,9 +23,10 @@ function HomeBP(props){
 
 
     async function createdata(){
+        var filter={date:{eq: date}}
         if(input){ const newTodo = await API.graphql({ 
             query: createBloodS, 
-            variables: {input: {...input, name: user, date:date, time:time}},
+            variables: {input: {...input, name: user, date:date, time:time}, filter:filter},
         })}
         console.log('createdata')
         setinput(null)
@@ -70,7 +71,7 @@ function HomeBP(props){
             <div>
             {fetcheddata &&fetcheddata.data.listBloodS.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.gc} {arr.time}<button onClick={()=>deldata(arr.id)}/></p>
+                    <p>{arr.gc} {arr.time} {arr.date}<button onClick={()=>deldata(arr.id)}/></p>
                 </div>))}
             </div> 
         )
