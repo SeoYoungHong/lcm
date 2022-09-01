@@ -1,10 +1,10 @@
 import React from "react";
 
 function Mission(){
+    
+
     return(
-        <div>
-            <header>Mission</header>
-        </div>
+     null
     )
 }
 export default Mission
