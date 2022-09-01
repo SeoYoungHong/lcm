@@ -8,6 +8,9 @@ import {Link} from 'react-router-dom'
 import './css/Home.css'
 import Homerecord from "./Homerecord"
 import Homereport from "./Homereport"
+import HomeSports from "./HomeSports"
+
+
 
 function Home(props){
 
@@ -48,6 +51,7 @@ function Home(props){
               <HomeBP titles={title}/>
               <HomeBS titles={title}/>
               <HomeFood titles={title}/>
+              <HomeSports titles={title}/>
               <Homerecord titles={title}/>
               <Homereport titles={title}/>
             </div>  

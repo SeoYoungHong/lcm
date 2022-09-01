@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import './css/HomeFood.css'
 import homeimg from './icons/homeimg.png'
 import blankimg from './icons/blankimg.png'
+import getdate from "./functions/date";
 
 
 function HomeFood(props){
@@ -17,7 +18,8 @@ function HomeFood(props){
     const [fetchedfood, setfetchedfood] = useState([])
     const [totalcal, settotalcal] = useState(0)
     const food_keys = Object.keys(food_data);
-    
+    const date=getdate().split('T')[0]
+    const time=getdate().split('T')[1]
 
 
     useEffect(()=>{
@@ -54,9 +56,10 @@ function HomeFood(props){
 
     //grapql데이터를 다루는 코드
     async function createdata(data){
+        var filter={date:{eq: date},}
         if(data){const newTodo = await API.graphql({ 
             query: createFood, 
-            variables: {input:{name: user, food:{...data}}}
+            variables: {input:{name: user, food:{...data}}, filter:filter}
         })}
         fetchdata()
     }
@@ -109,7 +112,7 @@ function HomeFood(props){
             <p>총칼로리 {totalcal} kcal</p>
             {fetcheddata &&fetcheddata.data.listFoods.items.map((arr, idx)=>(
                 <div key={idx}>
-                    <p>{arr.name}:  {arr.cal} kcal {arr.time}<button onClick={()=>deldata(arr.id)}>삭제</button></p>
+                    <p>{arr.name}:  {arr.cal} kcal {arr.date}<button onClick={()=>deldata(arr.id)}>삭제</button></p>
                 </div>))}
             </div>
         )

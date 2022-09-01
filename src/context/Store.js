@@ -1,7 +1,8 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useState, useEffect} from "react";
 import getdate from "../functions/date";
 import { listBloodPS, listBloodS, listChallenges, listFoods } from "../graphql";
 import { API } from "aws-amplify";
+import moment from "moment";
 
 export const NameContext = createContext({
     username:'',
@@ -13,11 +14,13 @@ export const DatasFetch = createContext({
     fetchdedataBS:[],
     fetchdedatafood:[],
     fetchdedataC:[],
+    reportdate:[],
     fetchdataBP:()=>{},
     fetchdataBS:()=>{},
     fetchdataFood:()=>{},
     fetchdataChallenge:()=>{},
-    fetchdataall:()=>{}
+    fetchdataall:()=>{},
+    setreportdate:()=>{},
 })
 
 
@@ -27,15 +30,19 @@ const Store = ({children}) => {
     const [fetchdedataBP, setfetcheddataBP]=useState()
     const [fetchdedataBS, setfetcheddataBS]=useState()
     const [fetchdedataC, setfetcheddataC]=useState()
+    const [reportdate, setreportdate] = useState(moment(todaydate).format("YYYY-MM-DD"))
+    const todaydate= new Date()
     const changeUserName = () => {
         setUsername('서용');
     }
+    useEffect(()=>{
+        fetchdata()
+    },[reportdate]) 
     let date=getdate().split('T')[0]
     let time=getdate().split('T')[1]
-    async function fetchdata(lists, path, filters){
+    async function fetchdata(lists, path, dates){
         //혈당에서는 혈당에 대한 정보만 뜨게함
-        var filter={date:{eq: date},}
-        //if(filters){filter = filters}
+        var filter={date:{eq: dates},}
         
         if(lists){const data =await API.graphql({query: lists, variables:{filter:filter}})
             .then(data => {path(data)})
@@ -44,10 +51,10 @@ const Store = ({children}) => {
         }
         else(console.log('데이터를 입력해라'))
     }
-    function fetchdataFood(){fetchdata(listFoods, setfetcheddatafood)}
-    function fetchdataBP(){fetchdata(listBloodPS, setfetcheddataBP)}
-    function fetchdataBS(){fetchdata(listBloodS, setfetcheddataBS)}
-    function fetchdataChallenge(){fetchdata(listChallenges, setfetcheddataC)}
+    function fetchdataFood(){fetchdata(listFoods, setfetcheddatafood, reportdate)}
+    function fetchdataBP(){fetchdata(listBloodPS, setfetcheddataBP, reportdate)}
+    function fetchdataBS(){fetchdata(listBloodS, setfetcheddataBS, reportdate)}
+    function fetchdataChallenge(){fetchdata(listChallenges, setfetcheddataC, reportdate)}
     function fetchdataall(){
         fetchdataBP()
         fetchdataBS()
@@ -62,6 +69,7 @@ const Store = ({children}) => {
             }}>
             </NameContext.Provider>
             <DatasFetch.Provider value={{
+                reportdate,
                 fetchdedataBP,
                 fetchdedataBS,
                 fetchdedatafood,
@@ -70,7 +78,8 @@ const Store = ({children}) => {
                 fetchdataBS,
                 fetchdataFood,
                 fetchdataChallenge,
-                fetchdataall
+                fetchdataall,
+                setreportdate,
             }}>   
             {children}
             </DatasFetch.Provider>
